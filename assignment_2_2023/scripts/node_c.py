@@ -48,12 +48,12 @@ class InfoService:
         self.average_vel_x = sum(vel_data) / min(len(vel_data), velocity_window_size)
 
         # Print the distance and average velocity
-        print("Distance= ", self.distance, "Average velocity = ", self.average_vel_x)
+        #print("Distance= ", self.distance, "Average velocity = ", self.average_vel_x)
 
     # Callback function for the service
     def get_values(self, _):      
         # Print the distance and average velocity
-        #print("Distance= ", self.distance, "Average velocity = ", self.average_vel_x)
+        print("Distance= ", self.distance, "Average velocity = ", self.average_vel_x)
         # Return a response with the distance and average velocity
         return Ave_pos_velResponse(self.distance, self.average_vel_x)		      
 
