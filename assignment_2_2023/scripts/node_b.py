@@ -15,17 +15,8 @@ class LastTargetService:
         rospy.init_node('last_target_service')
         rospy.loginfo("Last target node initialized")
 
-        # Subscribe to the '/pos_vel' topic, using the custom message type Vel
-        #rospy.Subscriber("/pos_vel", Vel, self.get_last_target)
         # Provide a service named 'input', using the custom service type Input
         rospy.Service('input', Input, self.result_callback)
-    '''
-    # Callback function for the subscriber
-    def get_last_target(self, _):
-        # Get the last desired x and y positions from the parameter server
-        self.last_des_x = rospy.get_param('/des_pos_x')
-        self.last_des_y = rospy.get_param('/des_pos_y')
-    '''
 
     # Callback function for the service
     def result_callback(self, _):
