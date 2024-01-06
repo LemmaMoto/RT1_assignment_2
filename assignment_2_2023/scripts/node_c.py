@@ -5,6 +5,7 @@ import math
 from assignment_2_2023.msg import Vel
 from assignment_2_2023.srv import Ave_pos_vel, Ave_pos_velResponse
 
+
 # Define a class for the service
 class InfoService:
     def __init__(self):
@@ -65,5 +66,14 @@ class InfoService:
 if __name__ == "__main__":
     # Create an instance of the service class
     service = InfoService()
+    dist_vel_service = rospy.ServiceProxy('info_service', Ave_pos_vel)
+
+    while not rospy.is_shutdown():
+            # Call the service
+            response = dist_vel_service()
+ 
+            rospy.loginfo(f"Service response: {response}")
+ 
+
     # Start the node
     service.spin()
