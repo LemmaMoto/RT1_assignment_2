@@ -69,17 +69,23 @@ Nodes
 
 ### node_a.py ###
 
+This Python script creates a ROS node for robot interaction within a ROS environment. It enables the user to assign new targets (by inputting 'y') or abort (by inputting 'c') the existing target for the robot, while also broadcasting the robot's current location and speed.
 
 ### node_b.py ###
 
+This Python script defines a ROS node that provides a service to return the last desired position of a robot. It subscribes to the /pos_vel topic to update the desired position and provides a service named 'input' that returns these positions when called.
+
+To visualize the information, you can call the service using the following command in a new terminal:
 
 ```bash
 $ rosservice call /input
 ```
 
+This will return the last desired x and y positions of the robot.
+
 ### node_c.py ###
 
-
+This Python script defines a ROS node that provides a service to return the average velocity and the distance between the current and desired positions of a robot. It subscribes to the /pos_vel topic to update these values and provides a service named 'info_service' that returns these values.
 
 Pseudocode
 ---------
