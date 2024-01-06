@@ -25,7 +25,7 @@ To get the RT1_assignment_2 package click on the link above or use the following
 $ git clone https://github.com/LemmaMoto/RT1_assignment_2.git
 ```
 
-To install konsole use the command:
+To install xterm use the command:
 
 ```bash
 $ sudo apt-get -y install xterm
