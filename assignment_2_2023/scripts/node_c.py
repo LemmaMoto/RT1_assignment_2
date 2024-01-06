@@ -72,7 +72,7 @@ if __name__ == "__main__":
             # Call the service
             response = dist_vel_service()
  
-            rospy.loginfo(f"\nService response: {response}")
+            rospy.loginfo(f"Service response:\n {response}")
  
 
     # Start the node
