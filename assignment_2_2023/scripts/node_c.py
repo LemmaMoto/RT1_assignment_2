@@ -1,4 +1,28 @@
 #!/usr/bin/env python3
+"""
+..module:: node_c
+    :platform: Unix
+    :synopsis: This script defines a ROS node that provides a service to get the distance and average velocity.
+..moduleauthor:: Emanuele Bua Odetti
+
+Subscribe to:
+    /pos_vel
+Publish to:
+    None
+Service:
+    /info_service
+Parameters:
+    /des_pos_x
+    /des_pos_y
+    /window_size
+
+This script defines a ROS node that provides a service to get the distance and average velocity.
+It uses the custom service type Ave_pos_vel to receive requests and send responses with the distance and average velocity.
+The InfoService class initializes the node and provides a callback function to handle the service requests.
+The main() function initializes the ROS node and starts the service.
+Note: This script assumes the presence of the necessary ROS packages and message types.
+"""
+
 
 import rospy
 import math
@@ -8,7 +32,18 @@ from assignment_2_2023.srv import Ave_pos_vel, Ave_pos_velResponse
 
 # Define a class for the service
 class InfoService:
+    """
+    InfoService class to provide a service to get the distance and average velocity.
+    """
+
     def __init__(self):
+        """
+        Initialize the InfoService class.
+        args:
+            None
+        returns:
+            None
+        """
         # Initialize class variables for the average velocity and distance
         self.average_vel_x = 0
         self.distance = 0
@@ -24,6 +59,14 @@ class InfoService:
 
     # Callback function for the subscriber
     def get_distance_and_averagevelocity(self, msg):
+        """
+        Callback function to handle the subscriber messages.
+        args:
+            msg: Vel
+        returns:
+            None
+        """
+
         # Get the desired x and y positions from the parameter server
         des_x = rospy.get_param('/des_pos_x')
         des_y = rospy.get_param('/des_pos_y')
@@ -50,12 +93,26 @@ class InfoService:
 
 
     # Callback function for the service
-    def get_values(self, _):      
+    def get_values(self, _):
+        """
+        Callback function to handle the service requests.
+        args:
+            _: Ave_pos_velRequest
+        returns:
+            Ave_pos_velResponse
+        """      
         # Return a response with the distance and average velocity
         return Ave_pos_velResponse(self.distance, self.average_vel_x)		      
 
     # Function to keep the node running
     def spin(self):
+        """
+        Function to keep the node running.
+        args:
+            None
+        returns:
+            None
+        """
         rospy.spin()
 
 # Main function

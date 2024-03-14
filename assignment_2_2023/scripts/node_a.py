@@ -1,5 +1,38 @@
 #! /usr/bin/env python3
+"""
+..module:: node_a
+    :platform: Unix
+    :synopsis: This script defines a ROS node that handles goal commands for a robot.
+..moduleauthor:: Emanuele Bua Odetti
 
+Subscribe to:
+    /odom
+Publish to:
+    /pos_vel
+Action server:
+    /reaching_goal
+Service:
+    /cancel_goal
+Parameters:
+    /des_pos_x
+    /des_pos_y
+Client:
+    /set_target_client
+
+This script defines a ROS node that handles goal commands for a robot. 
+It subscribes to the /odom topic to get the current position and velocity of the robot, and provides a user interface to set new goals or cancel the current goal. 
+It uses the actionlib library to send goals to the action server for planning and navigation.
+
+The GoalHandler class initializes a publisher for the /pos_vel topic and an action client for the /reaching_goal action server. 
+It provides a method to handle goal commands, which continuously listens for user input and performs the corresponding actions based on the input. 
+The current goal position is obtained from the ROS parameter server and updated when a new goal is set by the user. 
+The position and velocity of the robot are published to the /pos_vel topic.
+
+The main() function initializes the ROS node and starts handling goal commands.
+
+Note: This script assumes the presence of the necessary ROS packages and message types.
+
+"""
 # Import necessary libraries
 import rospy
 from geometry_msgs.msg import Point, Pose, Twist
@@ -14,7 +47,17 @@ from actionlib_msgs.msg import GoalStatus
 
 #defining the class
 class GoalHandler:
+    """
+    GoalHandler class to handle goal commands for a robot.
+    """
     def __init__(self):
+        """
+        Initialize the GoalHandler class.
+        args:
+            None
+        returns:
+            None
+        """
         # Initialize publisher and action client
         self.pub = rospy.Publisher("/pos_vel", Vel, queue_size=1)
         self.client = actionlib.SimpleActionClient('/reaching_goal', assignment_2_2023.msg.PlanningAction)
@@ -22,6 +65,15 @@ class GoalHandler:
         self.goal_cancelled = True  # Flag to track if the current goal has been cancelled
 
     def handle_goal_commands(self):
+        """
+        handle_goal_commands method to handle goal commands for a robot.
+        Continuously listen for user input and perform the corresponding actions based on the input.
+        args:
+            None
+        returns:
+            None
+        """
+
         while not rospy.is_shutdown():
             # Subscribe to /odom topic and publish position and velocity
             rospy.Subscriber("/odom", Odometry, self.publish_position_velocity)
@@ -70,6 +122,17 @@ class GoalHandler:
             rospy.loginfo("Last received goal: target_x = %f, target_y = %f", goal.target_pose.pose.position.x, goal.target_pose.pose.position.y)
 
     def publish_position_velocity(self, msg):
+        """
+        Publish the position and velocity of the robot to the /pos_vel topic.
+        args:
+            msg: Odometry message
+        returns:
+            None
+
+        :param msg: Odometry message
+        """
+       
+        
         # Extract current position and velocity from the Odometry message
         current_pos = msg.pose.pose.position
         current_vel_linear = msg.twist.twist.linear
@@ -86,6 +149,9 @@ class GoalHandler:
         self.pub.publish(pos_and_vel)
 
 def main():
+    """
+    Initialize the node and start handling goal commands.
+    """
     # Initialize the node and start handling goal commands
     rospy.init_node('set_target_client')
     handler = GoalHandler()
