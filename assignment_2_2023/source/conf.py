@@ -15,9 +15,12 @@ import os
 import subprocess 
 import sys 
 sys.path.insert(0, os.path.abspath('../'))
+#subprocess.call('doxygen ../Doxyfile.in', shell=True)
+show_authors = True
 
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
+
 
 extensions = [ 
               'sphinx.ext.autodoc',
@@ -37,6 +40,7 @@ extensions = [
 templates_path = ['_templates']
 exclude_patterns = []
 
+highlight_language = 'python3'
 source_suffix = '.rst' 
 master_doc = 'index' 
 html_theme ='sphinx_rtd_theme'
@@ -46,5 +50,10 @@ html_theme ='sphinx_rtd_theme'
 # -- Options for HTML output -------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#options-for-html-output
 
-
 html_static_path = ['_static']
+# intersphinx_mapping = {'python':('https://docs.python.org/3', None)}
+# todo_include_todos = True
+# breathe_projects = { "assignment_2_2023": "../build/xml/" }
+
+# breathe_default_project = "assignment_2_2023"
+# breathe_default_members = ('members', 'undoc-members')

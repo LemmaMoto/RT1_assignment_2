@@ -31,7 +31,6 @@ The position and velocity of the robot are published to the /pos_vel topic.
 The main() function initializes the ROS node and starts handling goal commands.
 
 Note: This script assumes the presence of the necessary ROS packages and message types.
-
 """
 # Import necessary libraries
 import rospy
