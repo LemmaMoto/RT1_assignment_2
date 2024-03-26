@@ -8,7 +8,10 @@
 
 # modified environment variables
 export CMAKE_PREFIX_PATH="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build/devel:$CMAKE_PREFIX_PATH"
+export LD_LIBRARY_PATH="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build/devel/lib:$LD_LIBRARY_PATH"
 export PATH='/home/ema/ros_catkin_ws/install_isolated/bin:/home/ema/.local/bin:/home/ema/.local/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin:/snap/bin'
+export PKG_CONFIG_PATH="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build/devel/lib/pkgconfig:$PKG_CONFIG_PATH"
 export PWD='/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build'
+export PYTHONPATH="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build/devel/lib/python3/dist-packages:$PYTHONPATH"
 export ROSLISP_PACKAGE_DIRECTORIES="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/build/devel/share/common-lisp:$ROSLISP_PACKAGE_DIRECTORIES"
 export ROS_PACKAGE_PATH="/home/ema/Documents/Unige/research_track_1/RobOS/my_ros/src/RT1_assignment_2/assignment_2_2023:$ROS_PACKAGE_PATH"
